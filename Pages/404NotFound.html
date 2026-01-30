@@ -1,0 +1,165 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DevCorp 404 Error Page</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1b657e",
+              "background-light": "#f9fafb",
+              "background-dark": "#21262c",
+              "accent-orange": "#f97316",
+            },
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      .nav-link-underline {
+        position: relative;
+      }
+      .nav-link-underline::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        @apply bg-primary;
+        transition: width 0.3s ease;
+      }
+      .nav-link-underline:hover::after {
+        width: 100%;
+      }
+      .error-title-glow {
+        text-shadow: 0 0 40px rgba(27, 101, 126, 0.1);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased"
+  >
+    <div id="header"></div>
+    <main class="flex-grow flex flex-col">
+      <section
+        class="flex-grow flex flex-col items-center justify-center max-w-7xl mx-auto px-6 py-20 text-center"
+      >
+        <div class="space-y-8 max-w-2xl">
+          <div class="relative">
+            <h1
+              class="text-[10rem] sm:text-[14rem] font-extrabold text-slate-100 dark:text-slate-800/50 leading-none select-none error-title-glow"
+            >
+              404
+            </h1>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span
+                class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white uppercase tracking-tighter"
+                >Page Not Found</span
+              >
+            </div>
+          </div>
+          <div class="space-y-4">
+            <h2
+              class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white"
+            >
+              Oops! The page you are looking for has been moved or doesn't
+              exist.
+            </h2>
+            <p class="text-slate-600 dark:text-slate-400 text-lg">
+              Don't worry, our developers have been notified. Use the navigation
+              below to find your way back.
+            </p>
+          </div>
+          <div
+            class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6"
+          >
+            <a
+              class="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 rounded-lg font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
+              href="index.html"
+            >
+              <span class="material-symbols-outlined">home</span>
+              Back to Homepage
+            </a>
+            <div class="relative w-full sm:w-96 group">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <span
+                  class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors"
+                  >search</span
+                >
+              </div>
+              <input
+                class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all text-slate-900 dark:text-white placeholder:text-slate-400"
+                placeholder="Search our site..."
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="pt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 opacity-60">
+            <div class="flex flex-col items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-3xl"
+                >developer_board</span
+              >
+              <a
+                class="text-xs font-bold uppercase tracking-wider"
+                href="techPage.html"
+                >Technologies</a
+              >
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-3xl"
+                >rocket_launch</span
+              >
+              <span class="text-xs font-bold uppercase tracking-wider"
+                >Projects</span
+              >
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-3xl"
+                >library_books</span
+              >
+              <span class="text-xs font-bold uppercase tracking-wider"
+                >Resources</span
+              >
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-3xl"
+                >contact_support</span
+              >
+              <span class="text-xs font-bold uppercase tracking-wider"
+                >Support</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="footer"></div>
+    <script src="../assets/js/layout.js"></script>
+    <script src="../assets/js/search.js" defer></script>
+  </body>
+</html>

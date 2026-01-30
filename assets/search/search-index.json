@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Home",
+    "url": "index.html",
+    "keywords": ["devcorp", "enterprise", "software", "cloud"]
+  },
+  {
+    "title": "Services",
+    "url": "servicesPage.html",
+    "keywords": ["services", "consulting", "development"]
+  },
+  {
+    "title": "Technologies",
+    "url": "techPage.html",
+    "keywords": ["technologies", "stack", "cloud", "ai", "devops"]
+  },
+  {
+    "title": "About Us",
+    "url": "aboutUsPage.html",
+    "keywords": ["company", "team", "culture"]
+  },
+  {
+    "title": "Projects",
+    "url": "projectsPage.html",
+    "keywords": ["case studies", "portfolio"]
+  }
+]
