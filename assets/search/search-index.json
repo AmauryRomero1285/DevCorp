@@ -23,5 +23,10 @@
     "title": "Projects",
     "url": "projectsPage.html",
     "keywords": ["case studies", "portfolio"]
+  },
+  {
+    "title":"404 Not found",
+    "url":"404NotFound.html",
+    "keywords":["Not Found"]
   }
 ]
