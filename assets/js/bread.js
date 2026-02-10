@@ -4,11 +4,11 @@ document.addEventListener("partial:loaded", (e) => {
   const currentPage = window.location.pathname.split("/").pop();
 
   const pageNameMap = {
-    "aboutUsPage.html": "About Us",
-    "servicesPage.html": "Services",
-    "techPage.html": "Technologies",
-    "projectsPage.html": "Projects",
-    "contact.html": "Contact",
+    "aboutUsPage.html": "Sobre Nosotros",
+    "servicesPage.html": "Servicios",
+    "techPage.html": "Tecnologías",
+    "projectsPage.html": "Proyectos",
+    "contact_page.html": "Contacto",
   };
 
   const span = document.getElementById("current-page");
