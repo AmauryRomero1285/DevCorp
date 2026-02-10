@@ -1,0 +1,8 @@
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-green-500">check_circle</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-bold text-slate-700 dark:text-slate-300" for="email">Business Email</label>
+<div class="relative">
+<input class="w-full bg-white dark:bg-slate-900 border-red-500 focus:ring-red-500 focus:border-red-500 rounded-xl px-4 py-3.5 text-slate-900 dark:text-white transition-all pr-12" id="email" type="email" value="j.anderson@invalid"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-red-500">error</span>
