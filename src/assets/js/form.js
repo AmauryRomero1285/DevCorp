@@ -48,7 +48,6 @@ function isGibberish(text) {
     "qwerty",
     "zxcv",
     "abcd",
-    "asas",
   ];
   const PatronBasura = commonGibberish.some((p) => t.includes(p));
   const tieneVocales = /[aeiouáéíóúü]/i.test(t);
