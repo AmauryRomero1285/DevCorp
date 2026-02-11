@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Home",
+    "url": "/src/pages/index.html",
+    "keywords": ["devcorp", "enterprise", "software", "cloud"]
+  },
+  {
+    "title": "Services",
+    "url": "/src/pages/services_page.html",
+    "keywords": ["services", "consulting", "development"]
+  },
+  {
+    "title": "Technologies",
+    "url": "/src/pages/tech_page.html",
+    "keywords": ["technologies", "stack", "cloud", "ai", "devops"]
+  },
+  {
+    "title": "About Us",
+    "url": "/src/pages/aboutUs_page.html",
+    "keywords": ["company", "team", "culture"]
+  },
+  {
+    "title": "Projects",
+    "url": "/src/pages/projects_page.html",
+    "keywords": ["case studies", "portfolio"]
+  },
+  {
+    "title":"Contact",
+    "url":"/src/pages/contact_page.html",
+    "keywords":["Social media", "email", "phone", "address"]
+  }
+]

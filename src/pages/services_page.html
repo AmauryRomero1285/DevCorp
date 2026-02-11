@@ -1,0 +1,265 @@
+<!doctype html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="search-title" content="Services" />
+  <meta name="search-keywords" content="consulting, development" />
+  <title>DevCorp Services Overview Page</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1b657e",
+            "background-light": "#f9fafb",
+            "background-dark": "#21262c",
+            "accent-orange": "#f97316",
+          },
+          fontFamily: {
+            display: ["Manrope", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px",
+          },
+        },
+      },
+    };
+  </script>
+  <style type="text/tailwindcss">
+    .nav-link-underline {
+        position: relative;
+      }
+      .nav-link-underline::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: #1b657e;
+        transition: width 0.3s ease;
+      }
+      .nav-link-underline:hover::after {
+        width: 100%;
+      }
+      .service-card:hover {
+        transform: translateY(-4px);
+      }
+    </style>
+</head>
+
+<body
+  class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased">
+  <div id="header"></div>
+  <main class="flex-grow">
+    <div id="breadcrumb"></div>
+    <section class="max-w-7xl mx-auto px-6 py-16 sm:py-24">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-10">
+        <div class="max-w-3xl space-y-6">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary dark:bg-primary/20 text-xs font-bold uppercase tracking-widest">
+            <span class="size-1.5 rounded-full bg-primary"></span>
+            Innovando Soluciones Digitales
+          </div>
+          <h1 class="text-5xl sm:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1]">
+            Nuestros <span class="text-primary">Servicios</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl">
+            Impulsamos a las empresas mediante soluciones de software escalables y seguras. Diseñamos, desarrollamos e
+            implementamos plataformas tecnológicas que apoyan el crecimiento y la eficiencia operativa.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-4">
+            <button
+              class="flex items-center justify-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-8 py-3.5 rounded-lg font-bold hover:opacity-90 transition-opacity">
+              Explora Nuestro Portafolio
+              <span class="material-symbols-outlined text-xl">arrow_forward</span>
+            </button>
+            <button
+              class="flex items-center justify-center gap-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-8 py-3.5 rounded-lg font-bold border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+              <a href="/Pages/404NotFound.html">Agenda una cita</a>
+            </button>
+          </div>
+        </div>
+        <div class="hidden xl:block">
+          <div class="relative p-1">
+            <div class="absolute inset-0 bg-primary/10 rounded-3xl blur-2xl"></div>
+            <div
+              class="relative bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none min-w-[320px]">
+              <div class="flex items-center justify-between mb-8">
+                <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Global Expertise</span>
+                <span class="size-3 rounded-full bg-green-500 animate-pulse"></span>
+              </div>
+              <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                  <div class="size-12 rounded-lg bg-slate-50 dark:bg-slate-700/50 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary">public</span>
+                  </div>
+                  <div>
+                    <div class="text-sm font-bold">12+ Oficinas operando</div>
+                    <div class="text-xs text-slate-500">
+                      Soporte Tecnico 24/7
+                    </div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="size-12 rounded-lg bg-slate-50 dark:bg-slate-700/50 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary">groups</span>
+                  </div>
+                  <div>
+                    <div class="text-sm font-bold">500+ Especialistas</div>
+                    <div class="text-xs text-slate-500">
+                      Ingenieros Certificados
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="bg-white dark:bg-background-dark/30 py-24 border-t border-slate-100 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16 space-y-4">
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">
+            Capacidades Empresariales
+          </h2>
+          <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+            Soluciones tecnológicas orientadas a la transformación digital
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            class="service-card group bg-white dark:bg-slate-800/40 p-10 rounded-2xl border border-slate-200 dark:border-slate-700/50 shadow-sm transition-all hover:shadow-xl hover:shadow-slate-200/40 dark:hover:shadow-none">
+            <div
+              class="size-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-3xl">terminal</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">
+              Desarrollo Web
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
+              Desarrollamos aplicaciones web personalizadas utilizando frameworks modernos y arquitecturas backend
+              robustas. Nuestras soluciones están diseñadas para crecer junto con tu negocio.
+            </p>
+            <a class="inline-flex items-center gap-2 text-primary text-sm font-bold hover:gap-3 transition-all"
+              href="#">
+              Learn More
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+          </div>
+          <div
+            class="service-card group bg-white dark:bg-slate-800/40 p-10 rounded-2xl border border-slate-200 dark:border-slate-700/50 shadow-sm transition-all hover:shadow-xl hover:shadow-slate-200/40 dark:hover:shadow-none">
+            <div
+              class="size-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-3xl">smartphone</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">
+              Desarrollo Móvil
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
+              Creamos aplicaciones móviles que ofrecen experiencias de usuario fluidas en iOS y Android. Priorizamos la
+              usabilidad, el rendimiento y la mantenibilidad a largo plazo.
+            </p>
+            <a class="inline-flex items-center gap-2 text-primary text-sm font-bold hover:gap-3 transition-all"
+              href="#">
+              Learn More
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+          </div>
+          <div
+            class="service-card group bg-white dark:bg-slate-800/40 p-10 rounded-2xl border border-slate-200 dark:border-slate-700/50 shadow-sm transition-all hover:shadow-xl hover:shadow-slate-200/40 dark:hover:shadow-none">
+            <div
+              class="size-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-3xl">cloud_queue</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">
+              Infraestructura en la Nube
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
+              Diseñamos y gestionamos infraestructuras en la nube que optimizan el rendimiento y la disponibilidad.
+              Nuestras soluciones facilitan la automatización y la eficiencia operativa.
+            </p>
+            <a class="inline-flex items-center gap-2 text-primary text-sm font-bold hover:gap-3 transition-all"
+              href="#">
+              Learn More
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+          </div>
+          <div
+            class="service-card group bg-white dark:bg-slate-800/40 p-10 rounded-2xl border border-slate-200 dark:border-slate-700/50 shadow-sm transition-all hover:shadow-xl hover:shadow-slate-200/40 dark:hover:shadow-none">
+            <div
+              class="size-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-3xl">psychology</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">
+              IA &amp; Machine Learning
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
+              Implementamos soluciones de inteligencia artificial y aprendizaje automático que convierten los datos en
+              información valiosa.Estos modelos mejoran la automatización y la toma de decisiones estratégicas.
+            </p>
+            <a class="inline-flex items-center gap-2 text-primary text-sm font-bold hover:gap-3 transition-all"
+              href="#">
+              Learn More
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+          </div>
+          <div
+            class="service-card group bg-white dark:bg-slate-800/40 p-10 rounded-2xl border border-slate-200 dark:border-slate-700/50 shadow-sm transition-all hover:shadow-xl hover:shadow-slate-200/40 dark:hover:shadow-none">
+            <div
+              class="size-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-3xl">verified_user</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">
+              Ciberseguridad
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
+              Ofrecemos servicios de ciberseguridad para proteger los activos digitales de las empresas. Nuestro enfoque
+              se basa en la prevención, detección y mejora continua.
+            </p>
+            <a class="inline-flex items-center gap-2 text-primary text-sm font-bold hover:gap-3 transition-all"
+              href="#">
+              Learn More
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+          </div>
+          <div
+            class="service-card group bg-slate-50 dark:bg-slate-800/20 p-10 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-700/50 flex flex-col justify-center items-center text-center">
+            <div
+              class="size-14 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-3xl">add</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-slate-400">
+              ¿Necesitas una solución?
+            </h3>
+            <p class="text-slate-400 text-xs uppercase tracking-widest font-bold">
+              Comunicate con nuestros expertos
+            </p>
+            <button class="mt-6 text-sm font-bold text-primary underline underline-offset-4">
+              ¡Vamos!
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="footer"></div>
+</body>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/bread.js"></script>
+<script src="../assets/js/search.js" defer></script>
+
+</html>
