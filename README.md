@@ -1,2 +1,2 @@
-# DevCorp Website
+# DevCorp
 practice to architecture web
