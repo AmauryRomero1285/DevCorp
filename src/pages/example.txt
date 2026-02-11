@@ -1,51 +1,32 @@
-<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-green-500">check_circle</span>
-</div>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-bold text-slate-700 dark:text-slate-300" for="email">Business Email</label>
-<div class="relative">
-<input class="w-full bg-white dark:bg-slate-900 border-red-500 focus:ring-red-500 focus:border-red-500 rounded-xl px-4 py-3.5 text-slate-900 dark:text-white transition-all pr-12" id="email" type="email" value="j.anderson@invalid"/>
-<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-red-500">error</span>
+ <!-- Sección de tipo de servicio -->
+                <div class="space-y-2">
+                  <label
+                    class="text-sm font-bold text-slate-700 dark:text-slate-300"
+                    for="service_type"
+                  >
+                    Tipo de Servicio
+                  </label>
 
+                  <select
+                    class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:border-primary rounded-xl px-4 py-3.5 text-slate-700 dark:text-slate-300 transition-all duration-200 cursor-pointer appearance-none"
+                    id="service_type"
+                  >
+                    <option value="" disabled selected hidden>
+                      Selecciona un servicio
+                    </option>
+                    <option value="web">Desarrollo Web</option>
+                    <option value="mobile">Aplicaciones Móviles</option>
+                    <option value="cloud">Arquitectura en la Nube</option>
+                    <option value="ai">IA & Machine Learning</option>
+                  </select>
 
-
-<div class="space-y-3">
-<div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-slate-50 dark:bg-slate-900/50 border border-red-500/50 rounded-xl transition-all">
-<div class="flex items-center gap-3">
-<div class="relative flex items-center justify-center">
-<input class="size-6 rounded border-2 border-slate-300 dark:border-slate-600 text-primary focus:ring-primary focus:ring-offset-0 transition-all cursor-pointer" id="captcha_check" type="checkbox"/>
-</div>
-<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 cursor-pointer" for="captcha_check">I'm not a robot</label>
-</div>
-<div class="flex flex-col items-center sm:items-end opacity-60">
-<svg class="size-8 text-primary/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-</svg>
-<span class="text-[9px] font-bold uppercase tracking-tighter text-slate-400">reCAPTCHA</span>
-</div>
-</div>
-<p class="text-xs font-semibold text-red-500 flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">warning</span>
-                                Please verify you are human
-                            </p>
-</div>
-
-
-
-
-                <div class="flex justify-left my-4">
-                  <div class="g-recaptcha" data-sitekey="6LcJUmcsAAAAAE-i6m2XZyft01Ctusk-xP0GVFdG">
-                  </div>
+                  <p
+                    id="service-error"
+                    class="text-xs font-semibold text-red-500 flex items-center gap-1 hidden"
+                  >
+                    <span class="material-symbols-outlined text-sm"
+                      >warning</span
+                    >
+                    Debes seleccionar un servicio
+                  </p>
                 </div>
-
-
-            <div class="flex gap-4 p-4 rounded-2xl transition-colors hover:bg-slate-100 dark:hover:bg-slate-800/50">
-              <div
-                class="size-12 shrink-0 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-primary shadow-sm">
-                <span class="material-symbols-outlined">mail</span>
-              </div>
-              <div>
-                <h3 class="font-bold text-slate-900 dark:text-white">Support Email</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">enterprise@devcorp.com<br />24/7 Ticketing
-                  System</p>
-              </div>
