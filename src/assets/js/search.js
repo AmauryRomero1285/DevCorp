@@ -1,7 +1,7 @@
 let searchIndex = [];
 
 // índice de búsqueda
-fetch("../assets/search/search-index.json")
+fetch("/src/assets/search/search-index.json")
   .then(res => res.json())
   .then(data => {
     searchIndex = data;
@@ -149,7 +149,6 @@ function getSectionFromUrl(url) {
   if (url.includes("services")) return "Servicios";
   if (url.includes("tech")) return "Tecnologías";
   if (url.includes("projects")) return "Proyectos";
-  if (url.includes("404")) return "Sistema";
   return "General";
 }
 
