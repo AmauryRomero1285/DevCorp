@@ -7,8 +7,6 @@ const nameErrorElement = document.getElementById("name-error");
 
 const captchaContainer = document.getElementById("captcha_container");
 const captchaErrorMessage = document.getElementById("captcha_error");
-const customCheck = document.getElementById("custom-check");
-const customBox = document.getElementById("custom-box");
 
 const serviceSelect = document.getElementById("service_type");
 const serviceErrorElement = document.getElementById("service-error");
@@ -21,22 +19,8 @@ const form = document.getElementById("contact-form");
 const errorIcon =
   '<span class="material-symbols-outlined text-sm">warning</span>';
 
-// Callback global para reCAPTCHA
-window.onCaptchaSuccess = function () {
-  customCheck.classList.remove("hidden");
-  customBox.classList.add("border-primary", "bg-primary/10");
-  captchaContainer.classList.remove("border-red-500");
-  captchaErrorMessage.classList.add("hidden");
-};
-
-function resetCustomCaptcha() {
-  if (typeof grecaptcha !== "undefined") grecaptcha.reset();
-  customCheck.classList.add("hidden");
-  customBox.classList.remove("border-primary", "bg-primary/10");
-  captchaContainer.classList.remove("border-red-500");
-}
-
 // auxiliares
+
 function isGibberish(text) {
   const t = text.trim().toLowerCase();
   if (t.length < 3) return false;
@@ -48,12 +32,11 @@ function isGibberish(text) {
     "qwerty",
     "zxcv",
     "abcd",
-    "asas",
   ];
   const PatronBasura = commonGibberish.some((p) => t.includes(p));
   const tieneVocales = /[aeiouáéíóúü]/i.test(t);
-  const letrasRepetidas = /(.)\1{3,}/.test(t);
-  const consonantesSeguidas = /[^aeiouáéíóúü\s]{5,}/i.test(t);
+  const letrasRepetidas = /(.)\1{2,}/.test(t);
+  const consonantesSeguidas = /[^aeiouáéíóúü\s]{3,}/i.test(t);
   return (
     !tieneVocales || letrasRepetidas || consonantesSeguidas || PatronBasura
   );
@@ -154,13 +137,14 @@ form.addEventListener("submit", async function (e) {
   const isNameOk = validateNameSync();
   const isServiceOk = validateService();
   const isDetailsOk = validateProjectDetailsSync();
-  const captchaValue =
-    typeof grecaptcha !== "undefined" ? grecaptcha.getResponse() : "";
+  const captchaValue = grecaptcha.getResponse();
 
-  // Verificación de captcha
   if (!captchaValue) {
     captchaContainer.classList.add("border-red-500");
     captchaErrorMessage.classList.remove("hidden");
+  } else {
+    captchaContainer.classList.remove("border-red-500");
+    captchaErrorMessage.classList.add("hidden");
   }
 
   if (!isEmailOk || !isNameOk || !isServiceOk || !isDetailsOk || !captchaValue)
@@ -219,36 +203,6 @@ form.addEventListener("submit", async function (e) {
     btn.innerHTML = originalContent;
     btn.disabled = false;
     form.reset();
-    resetCustomCaptcha();
+    grecaptcha.reset();
   }, 2000);
 });
-
-// Reiniciar formulario
-
-const resetBtn = document.getElementById("reset-form-btn");
-
-function fullReset() {
-  form.reset();
-  resetCustomCaptcha();
-  const errorMessages = [
-    errorElement,
-    nameErrorElement,
-    serviceErrorElement,
-    projectErrorElement,
-    captchaErrorMessage,
-  ];
-  const inputs = [
-    emailInput,
-    nameInput,
-    serviceSelect,
-    projectDetails,
-    captchaContainer,
-  ];
-
-  errorMessages.forEach((el) => el.classList.add("hidden"));
-  inputs.forEach((el) => el.classList.remove("border-red-500"));
-
-  console.log("Formulario reiniciado correctamente");
-}
-
-resetBtn.addEventListener("click", fullReset);
