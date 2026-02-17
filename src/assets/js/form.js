@@ -78,65 +78,142 @@ function validateEmail() {
   const email = emailInput.value.trim();
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const isValid = emailRegex.test(email) && email.length > 5;
-  isValid
-    ? errorElement.classList.add("hidden")
-    : errorElement.classList.remove("hidden");
-  isValid
-    ? emailInput.classList.remove("border-red-500")
-    : emailInput.classList.add("border-red-500");
+
+  const icon = errorElement.querySelector("span");
+
+  emailInput.classList.remove("border-green-500", "border-red-500");
+  errorElement.classList.remove("text-green-500", "text-red-500");
+
+  if (isValid) {
+    icon.textContent = "check_circle";
+    icon.classList.remove("text-red-500");
+    icon.classList.add("text-green-500");
+
+    errorElement.lastChild.textContent = " Email válido.";
+    errorElement.classList.add("text-green-500");
+    emailInput.classList.add("border-green-500");
+  } else {
+    icon.textContent = "warning";
+    icon.classList.remove("text-green-500");
+    icon.classList.add("text-red-500");
+
+    errorElement.lastChild.textContent = " Ingresa un correo válido.";
+    errorElement.classList.add("text-red-500");
+    emailInput.classList.add("border-red-500");
+  }
+
+  errorElement.classList.remove("hidden");
   return isValid;
 }
+
 
 function validateNameSync() {
   const name = nameInput.value.trim();
   const isShort = name.length < 3;
   const isBadText = isGibberish(name);
   const isValid = !isShort && !isBadText;
+
+  const icon = nameErrorElement.querySelector("span");
+
+  nameInput.classList.remove("border-green-500", "border-red-500");
+  nameErrorElement.classList.remove("text-green-500", "text-red-500");
+
   if (isValid) {
-    nameErrorElement.classList.add("hidden");
-    nameInput.classList.remove("border-red-500");
-    return true;
+    icon.textContent = "check_circle";
+    icon.classList.remove("text-red-500");
+    icon.classList.add("text-green-500");
+
+    nameErrorElement.lastChild.textContent = " Nombre válido.";
+    nameErrorElement.classList.add("text-green-500");
+    nameInput.classList.add("border-green-500");
   } else {
     const msg = isShort
-      ? "El nombre debe tener al menos 3 caracteres."
-      : "El nombre parece incoherente.";
-    nameErrorElement.innerHTML = `${errorIcon} ${msg}`;
-    nameErrorElement.classList.remove("hidden");
+      ? " El nombre debe tener al menos 3 caracteres."
+      : " El nombre parece incoherente.";
+
+    icon.textContent = "warning";
+    icon.classList.remove("text-green-500");
+    icon.classList.add("text-red-500");
+
+    nameErrorElement.lastChild.textContent = msg;
+    nameErrorElement.classList.add("text-red-500");
     nameInput.classList.add("border-red-500");
   }
+
+  nameErrorElement.classList.remove("hidden");
   return isValid;
 }
 
+
 function validateService() {
   const isValid = serviceSelect.value !== "";
-  isValid
-    ? serviceErrorElement.classList.add("hidden")
-    : serviceErrorElement.classList.remove("hidden");
-  isValid
-    ? serviceSelect.classList.remove("border-red-500")
-    : serviceSelect.classList.add("border-red-500");
+  const icon = serviceErrorElement.querySelector("span");
+
+  serviceSelect.classList.remove("border-green-500", "border-red-500");
+  serviceErrorElement.classList.remove("text-green-500", "text-red-500");
+
+  if (isValid) {
+    icon.textContent = "check_circle";
+    icon.classList.remove("text-red-500");
+    icon.classList.add("text-green-500");
+
+    serviceErrorElement.lastChild.textContent = " Servicio seleccionado.";
+    serviceErrorElement.classList.add("text-green-500");
+    serviceSelect.classList.add("border-green-500");
+  } else {
+    icon.textContent = "warning";
+    icon.classList.remove("text-green-500");
+    icon.classList.add("text-red-500");
+
+    serviceErrorElement.lastChild.textContent = " Selecciona un servicio.";
+    serviceErrorElement.classList.add("text-red-500");
+    serviceSelect.classList.add("border-red-500");
+  }
+
+  serviceErrorElement.classList.remove("hidden");
   return isValid;
 }
+
 
 function validateProjectDetailsSync() {
   const details = projectDetails.value.trim();
   const isShort = details.length < 20;
   const isBadText = isGibberish(details);
   const isValid = !isShort && !isBadText;
+
+  const icon = projectErrorElement.querySelector("span");
+
+  // Limpia colores previos
+  projectDetails.classList.remove("border-green-500", "border-red-500");
+  projectErrorElement.classList.remove("text-green-500", "text-red-500");
+
   if (isValid) {
-    projectErrorElement.classList.add("hidden");
-    projectDetails.classList.remove("border-red-500");
-    return true;
+    icon.textContent = "check_circle";
+    icon.classList.remove("text-red-500");
+    icon.classList.add("text-green-500");
+    
+
+    projectErrorElement.lastChild.textContent = " ¡Texto válido!";
+    projectErrorElement.classList.add("text-green-500");
+    projectDetails.classList.add("border-green-500");
   } else {
     const msg = isShort
-      ? "Tu texto es demasiado corto (mín. 20 caracteres)."
-      : "El texto parece incoherente.";
-    projectErrorElement.innerHTML = `${errorIcon} ${msg}`;
-    projectErrorElement.classList.remove("hidden");
+      ? " Tu texto es demasiado corto (mín. 20 caracteres)."
+      : " El texto parece incoherente.";
+
+    icon.textContent = "warning";
+    icon.classList.remove("text-green-500");
+    icon.classList.add("text-red-500");
+
+    projectErrorElement.lastChild.textContent = msg;
     projectDetails.classList.add("border-red-500");
+    projectErrorElement.classList.add("text-red-500");
   }
+  projectErrorElement.classList.remove("hidden");
+
   return isValid;
 }
+
 
 // eventos
 emailInput.addEventListener("input", validateEmail);
