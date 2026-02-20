@@ -14,28 +14,27 @@ export default function ContactSection() {
   } = useContactForm();
 
   useEffect(() => {
-  // Callback cuando se completa correctamente
-  window.onCaptchaSuccess = (token) => {
-    handleCaptchaSuccess(token);
-  };
+    // Callback cuando se completa correctamente
+    window.onCaptchaSuccess = (token) => {
+      console.log("Captcha listo")
+      handleCaptchaSuccess(token);
+    };
 
-  // Callback cuando expira
-  window.onCaptchaExpired = () => {
-    resetCaptcha();
-  };
+    // Callback cuando expira
+    window.onCaptchaExpired = () => {
+      resetCaptcha();
+    };
 
-  // Limpieza 
-  return () => {
-    delete window.onCaptchaSuccess;
-    delete window.onCaptchaExpired;
-  };
-}, [handleCaptchaSuccess, resetCaptcha]);
+    // Limpieza 
+    return () => {
+      delete window.onCaptchaSuccess;
+      delete window.onCaptchaExpired;
+    };
+  }, [handleCaptchaSuccess, resetCaptcha]);
 
-  // Opcional: limpiar formulario después de éxito (puedes moverlo al hook si prefieres)
+
   const onSuccess = () => {
-    // Aquí podrías mostrar un toast o mensaje bonito en lugar de alert
     alert("¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.");
-    // El hook ya resetea captcha, pero puedes resetear visualmente si quieres
   };
 
 
@@ -131,11 +130,10 @@ export default function ContactSection() {
                     Nombre Completo
                   </label>
                   <input
-                    className={`w-full bg-white dark:bg-slate-900 border ${
-                      errors.full_name
+                    className={`w-full bg-white dark:bg-slate-900 border ${errors.full_name
                         ? "border-red-500"
                         : "border-slate-200 dark:border-slate-700"
-                    } focus:ring-primary focus:border-primary rounded-xl px-4 py-3.5 text-slate-900 dark:text-white transition-all`}
+                      } focus:ring-primary focus:border-primary rounded-xl px-4 py-3.5 text-slate-900 dark:text-white transition-all`}
                     id="full_name"
                     name="full_name"
                     type="text"
@@ -162,11 +160,10 @@ export default function ContactSection() {
                     Email
                   </label>
                   <input
-                    className={`w-full bg-white dark:bg-slate-900 border ${
-                      errors.email
+                    className={`w-full bg-white dark:bg-slate-900 border ${errors.email
                         ? "border-red-500"
                         : "border-slate-200 dark:border-slate-700"
-                    } focus:ring-primary focus:border-primary rounded-xl px-4 py-3.5 text-slate-900 dark:text-white transition-all`}
+                      } focus:ring-primary focus:border-primary rounded-xl px-4 py-3.5 text-slate-900 dark:text-white transition-all`}
                     id="email"
                     name="email"
                     type="email"
@@ -195,11 +192,10 @@ export default function ContactSection() {
                   Tipo de Servicio
                 </label>
                 <select
-                  className={`w-full bg-white dark:bg-slate-900 border ${
-                    errors.service_type
+                  className={`w-full bg-white dark:bg-slate-900 border ${errors.service_type
                       ? "border-red-500"
                       : "border-slate-200 dark:border-slate-700"
-                  } focus:ring-2 focus:ring-primary focus:border-primary rounded-xl px-4 py-3.5 text-slate-700 dark:text-slate-300 transition-all duration-200 cursor-pointer appearance-none`}
+                    } focus:ring-2 focus:ring-primary focus:border-primary rounded-xl px-4 py-3.5 text-slate-700 dark:text-slate-300 transition-all duration-200 cursor-pointer appearance-none`}
                   id="service_type"
                   name="service_type"
                   value={formData.service_type}
@@ -232,11 +228,10 @@ export default function ContactSection() {
                   Detalles del Proyecto
                 </label>
                 <textarea
-                  className={`w-full bg-white dark:bg-slate-900 border ${
-                    errors.project_details
+                  className={`w-full bg-white dark:bg-slate-900 border ${errors.project_details
                       ? "border-red-500"
                       : "border-slate-200 dark:border-slate-700"
-                  } focus:ring-primary focus:border-primary rounded-xl px-4 py-3.5 text-slate-900 dark:text-white transition-all resize-none`}
+                    } focus:ring-primary focus:border-primary rounded-xl px-4 py-3.5 text-slate-900 dark:text-white transition-all resize-none`}
                   id="project_details"
                   name="project_details"
                   rows={4}
@@ -258,41 +253,43 @@ export default function ContactSection() {
               <div className="space-y-3">
                 <div
                   id="captcha_container"
-                  className="relative flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 rounded-xl transition-all overflow-hidden"
+                  className="relative flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 rounded-xl transition-all overflow-visible"
                 >
                   {/* Capa invisible de Google reCAPTCHA v2 */}
                   <div
                     className="g-recaptcha"
-                    data-sitekey="6LeRBXIsAAAAALqEQituH5Mm4cJ1d39my4m2F9xH" // ← TU NUEVA CLAVE
+                    data-sitekey="6LeRBXIsAAAAALqEQituH5Mm4cJ1d39my4m2F9xH"
                     data-callback="onCaptchaSuccess"
                     data-expired-callback="onCaptchaExpired"
                     style={{
                       position: "absolute",
                       inset: 0,
-                      opacity: 0.01,
-                      zIndex: 30,
+                      opacity: 0,
+                      width: "100%",
+                      height: "100%",
+                      zIndex: 20,
                       cursor: "pointer",
-                      transform: "scale(2)",
+                      transform: "scale(1)",
                       transformOrigin: "center",
-                      pointerEvents:'auto',
+                      pointerEvents: 'auto',
                     }}
                   ></div>
 
                   {/* Diseño visual personalizado (estático) */}
                   <div className="flex items-center gap-3 z-10 pointer-events-none">
                     <div
-                      className={`size-6 border-2 rounded flex items-center justify-center transition-all duration-300 ${
-                        isCaptchaValid
+                    id ="customBox"
+                      className={`size-6 border-2 rounded flex items-center justify-center transition-all duration-300 ${isCaptchaValid
                           ? "bg-primary/20 border-primary"
                           : "bg-white border-slate-300 dark:border-slate-600"
-                      }`}
+                        }`}
                     >
                       <span
-                        className={`material-symbols-outlined text-primary text-lg transition-opacity duration-300 ${
-                          isCaptchaValid
+                      id="customCheck"
+                        className={`material-symbols-outlined text-primary text-lg transition-opacity duration-300 ${isCaptchaValid
                             ? "opacity-100 scale-100"
                             : "opacity-0 scale-75"
-                        }`}
+                          }`}
                       >
                         check
                       </span>

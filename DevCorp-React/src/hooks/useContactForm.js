@@ -37,9 +37,26 @@ export default function useContactForm() {
   }, []);
 
   // Tu función isGibberish (cópiala aquí)
-  function isGibberish(text) { 
-    window.grecaptcha
-   }
+  function isGibberish(text) {
+    const t = text.trim().toLowerCase();
+    if (t.length < 3) return false;
+    const commonGibberish = [
+      "asdf",
+      "asda",
+      "sdfg",
+      "jklm",
+      "qwerty",
+      "zxcv",
+      "abcd",
+    ];
+    const PatronBasura = commonGibberish.some((p) => t.includes(p));
+    const tieneVocales = /[aeiouáéíóúü]/i.test(t);
+    const letrasRepetidas = /(.)\1{3,}/.test(t);
+    const consonantesSeguidas = /[^aeiouáéíóúü\s]{5,}/i.test(t);
+    return (
+      !tieneVocales || letrasRepetidas || consonantesSeguidas || PatronBasura
+    );
+  }
 
   // Validar todo
   const validateForm = useCallback(() => {
@@ -62,7 +79,7 @@ export default function useContactForm() {
 
     // Validación en tiempo real (opcional: solo en blur o submit)
     if (name === 'full_name') setErrors((prev) => ({ ...prev, full_name: validateName(value) }));
-    if (name === 'email')     setErrors((prev) => ({ ...prev, email: validateEmail(value) }));
+    if (name === 'email') setErrors((prev) => ({ ...prev, email: validateEmail(value) }));
     // ... lo mismo para los demás
   };
 
@@ -86,7 +103,7 @@ export default function useContactForm() {
 
     try {
       // Aquí va el envío real (usa tu servicio/api.js)
-       await sendContactForm({ ...formData, captchaToken });
+      await sendContactForm({ ...formData, captchaToken });
 
       // Simulación
       await new Promise((r) => setTimeout(r, 1800));

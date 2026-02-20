@@ -1,7 +1,19 @@
 // components/Header.tsx
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Header() {
+  const navigate = useNavigate();
+  const [query, setQuery] = useState("");
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const trimmedQuery = query.trim();
+    if (trimmedQuery) {
+      navigate(`/search?q=${encodeURIComponent(trimmedQuery)}`);
+      // Opcional: setQuery("");  ← descomenta si quieres limpiar el input después de buscar
+    }
+  };
+
   return (
     <header
       className="
@@ -10,8 +22,8 @@ sticky top-0 z-50 w-full bg-white/90 dark:bg-background-dark/90 backdrop-blur-md
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link
-        to="/"
-        className="flex items-center gap-3 group cursor-pointer">
+          to="/"
+          className="flex items-center gap-3 group cursor-pointer">
           <div className="bg-primary p-2 rounded-lg">
             <svg
               className="w-6 h-6 text-white"
@@ -114,13 +126,14 @@ sticky top-0 z-50 w-full bg-white/90 dark:bg-background-dark/90 backdrop-blur-md
           >
             Contacto
           </Link>
-
-          {/* Buscador */}
-          <div className="relative">
-            <input
-              type="search"
-              placeholder="Search..."
-              className="
+          <form onSubmit={handleSearch} className="relative">
+            <div>
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search..."
+                className="
                 peer w-60 pl-12 pr-4 py-3 rounded-lg text-sm
                 bg-slate-100 dark:bg-slate-800
                 text-slate-700 dark:text-slate-200
@@ -128,11 +141,14 @@ sticky top-0 z-50 w-full bg-white/90 dark:bg-background-dark/90 backdrop-blur-md
                 focus:outline-none focus:ring-primary focus:ring-primary/40 focus:border-primary
                 transition-all
               "
-            />
-            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-700 peer-focus:text-primary transition-colors">
-              search
-            </span>
-          </div>
+              />
+              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-700 peer-focus:text-primary transition-colors">
+                search
+              </span>
+            </div>
+          </form>
+          {/* Buscador */}
+
         </nav>
 
         {/* Botón CTA */}

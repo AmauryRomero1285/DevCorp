@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
 
 // Tus páginas
+import Search from "../pages/Search/search";
 import Home from "../pages/Home/Home";
 import Services from '../pages/Services/services_page';
 import AboutUs from '../pages/AboutUs/aboutUs_page';
@@ -21,7 +22,8 @@ export default function AppRoutes() {
         <Route path="/contacto" element={<Contact />} />
         <Route path="/sobreNosotros" element={<AboutUs />} />
         <Route path="/tecnologias" element={<Technologies/>}/>
-        
+        <Route path="/search" element={<Search/>}/>
+
       </Route>
     </Routes>
   );
