@@ -1,16 +1,18 @@
 // components/Header.tsx
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useTheme } from "../../../utils/Theme";
 
 export default function Header() {
   const navigate = useNavigate();
+  const { darkMode, toggleTheme } = useTheme();
   const [query, setQuery] = useState("");
   const handleSearch = (e) => {
     e.preventDefault();
     const trimmedQuery = query.trim();
     if (trimmedQuery) {
       navigate(`/search?q=${encodeURIComponent(trimmedQuery)}`);
-      // Opcional: setQuery("");  ← descomenta si quieres limpiar el input después de buscar
+       setQuery("");
     }
   };
 
@@ -21,9 +23,7 @@ sticky top-0 z-50 w-full bg-white/90 dark:bg-background-dark/90 backdrop-blur-md
       "
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link
-          to="/"
-          className="flex items-center gap-3 group cursor-pointer">
+        <Link to="/" className="flex items-center gap-3 group cursor-pointer">
           <div className="bg-primary p-2 rounded-lg">
             <svg
               className="w-6 h-6 text-white"
@@ -148,8 +148,16 @@ sticky top-0 z-50 w-full bg-white/90 dark:bg-background-dark/90 backdrop-blur-md
             </div>
           </form>
           {/* Buscador */}
-
         </nav>
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+          aria-label={darkMode ? "Activar modo claro" : "Activar modo oscuro"}
+        >
+          <span className="material-symbols-outlined text-2xl text-slate-700 dark:text-slate-200">
+            {darkMode ? "light_mode" : "dark_mode"}
+          </span>
+        </button>
 
         {/* Botón CTA */}
         <div className="flex items-center gap-6 ml-2">
