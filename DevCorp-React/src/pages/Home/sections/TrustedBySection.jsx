@@ -8,11 +8,11 @@ export default function TrustedBySection() {
 
         <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
           {/* Aquí puedes reemplazar con los logos reales o placeholders */}
-          <img alt="Partner Logo" className="h-8 w-auto" src="https://via.placeholder.com/120x32?text=Logo1" />
-          <img alt="Partner Logo" className="h-8 w-auto" src="https://via.placeholder.com/120x32?text=Logo2" />
-          <img alt="Partner Logo" className="h-8 w-auto" src="https://via.placeholder.com/120x32?text=Logo3" />
-          <img alt="Partner Logo" className="h-8 w-auto" src="https://via.placeholder.com/120x32?text=Logo4" />
-          <img alt="Partner Logo" className="h-8 w-auto" src="https://via.placeholder.com/120x32?text=Logo5" />
+          <img alt="Partner Logo" className="h-8 w-auto" src="https://img.icons8.com/color/512/square.png" />
+          <img alt="Partner Logo" className="h-8 w-auto" src="https://img.icons8.com/color/512/square.png" />
+          <img alt="Partner Logo" className="h-8 w-auto" src="https://img.icons8.com/color/512/square.png" />
+          <img alt="Partner Logo" className="h-8 w-auto" src="https://img.icons8.com/color/512/square.png" />
+          <img alt="Partner Logo" className="h-8 w-auto" src="https://img.icons8.com/color/512/square.png" />
         </div>
       </div>
     </section>

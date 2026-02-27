@@ -1,6 +1,6 @@
-import ContactSection from '../Contact/sections/ContactSection';
-import LocationMapSection from '../Contact/sections/LocationMapSection';
-import SocialLinksSection from '../Contact/sections/SocialLinksSection';
+import ContactSection from './sections/contactSection/ContactSection';
+import LocationMapSection from './sections/LocationMapSection/LocationMapSection';
+import SocialLinksSection from './sections/SocialLinkSection/SocialLinksSection';
 
 export default function ContactPage() {
   return (
