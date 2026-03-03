@@ -1,45 +1,68 @@
 // src/components/projects/PortfolioAndTestimonials.jsx
 import React, { useState } from "react";
 
+const projectTypes = [
+  { id: "domain", label: "Corporativo / Fintech", icon: "domain" },
+  { id: "medical_services", label: "Salud / BioTech", icon: "medical_services" },
+  { id: "shopping_cart", label: "E-commerce / Retail", icon: "shopping_cart" },
+  { id: "smart_toy", label: "IA / Machine Learning", icon: "smart_toy" },
+  { id: "cloud", label: "SaaS / Cloud Computing", icon: "cloud" },
+];
+
+const ROLE_OPTIONS = ["CEO", "CTO", "Founder", "Head of Innovation", "Product Manager", "Lead Engineer"];
+const COMPANY_OPTIONS = ["NexaWealth Financial", "BioSync Medical", "GlobalRetail Group", "TechFlow Solutions", "EcoSmart Energy"];
+
 const initialTestimonials = [
   {
     name: "Marcus Thorne",
-    role: "CTO, NexaWealth Financial",
-    text: "DevCorp didn't just build our platform; they revolutionized our entire digital workflow. Their expertise in fintech regulations was critical for our global launch.",
+    role: "CTO",
+    company: "NexaWealth Financial",
+    text: "DevCorp didn't just build our platform; they revolutionized our entire digital workflow.",
     rating: 5,
     photo: "https://lh3.googleusercontent.com/aida-public/AB6AXuCj_2I68-mk6shjUHNpjXyFcrELiIrmMiqrBi2InzdG_cs2PXzbvWVzSPsWBida6UTFc0zfGGbSdBzcG6IqKamvwRejxPuu-JsG_GWvr4qPdSqYtI1K7QCB503Lhcl3jqmJ0n7qb95XFRMtnwWKuVreRbTe3NH8sDpl7rAQBE88_l9FMcViyWXK9M0IungF-BVSXqlGGb1f__k1xjhsnBuDtqYO2ob3DEatXAabDaFl-cqDQvHu33lkc9ff-KkmEfTbHa1pmv7iL5Fu",
     icon: "domain",
+  }
+];
+
+const DEFAULT_AVATAR = "https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2281862025.jpg";
+const DEFAULT_PROJECT_IMAGE = "https://picsum.photos/200/237?grayscale&blur=2&random=1";
+
+const projectsData = [
+  {
+    id: 1,
+    category: "SaaS",
+    title: "OmniStore Core",
+    description: "Headless commerce engine supporting multi-channel retail with high-concurrency inventory synchronization.",
+    image: DEFAULT_PROJECT_IMAGE,
+    tag: "E-commerce",
   },
   {
-    name: "Dr. Sarah Jenkins",
-    role: "Head of Innovation, BioSync Medical",
-    text: "The AI-driven patient tracking they implemented has reduced our administrative overhead by 40%. A true partner in healthcare innovation.",
-    rating: 5,
-    photo: "https://lh3.googleusercontent.com/aida-public/AB6AXuD2bx8hrbwv_C1mo3RtA_RSzQGMrO9MKaJpTVVYrwDHaWaCDu3GODmxFIm0TcdwgkqzGHI24j4SeLNnBUADodhfQqfooccr313hznX4Ofd3Al97IvlECII1Fm03GvptKO9LXr4uTKkyK10zMUoueWlCibKd1eFrdjYGJtqcQULRUYeF_eQ-OQkY1OI6UQfBe85FjrOjRlI-GNK0Uk_BNTece9FG9nejV-e--UFXnD_zix684KIWgRdnpgw866UW39clpIYoauPBAH3n",
-    icon: "medical_services",
-  },
-  {
-    name: "Liam Vester",
-    role: "Founder, GlobalRetail Group",
-    text: "The scalability of the e-commerce architecture DevCorp provided handled our Black Friday traffic effortlessly. We saw 2x growth in conversion.",
-    rating: 4,
-    photo: "https://lh3.googleusercontent.com/aida-public/AB6AXuB0hJDVSXmNCOXI2-KGMUIil266mjc2DR6aaD89rVJMe2Dc2Ma9OwVqhYqdH6mbMdQYyzsd3Wg2OoRxc_jkpw6u38qIBtHBq6RTSz5yzsfFDE-ppy4vbrkQRIiytDTqbs9ghkrDOsri42DJie6I6rJMxpR7VEsadut8dGKESwtA2sLr12hojTNMjXLoNv2SfzFNNTPlcPNPPpNIXRdRMm51W3Zp3lkipAUHAcAW0BXBcYuDaxlznCV_PfELBUVXNOIYzQNWoMhy57kP",
-    icon: "shopping_cart",
-  },
+    id: 2,
+    category: "Fintech",
+    title: "NexaPay Gateway",
+    description: "Secure payment processing with real-time fraud detection and global multi-currency settlement.",
+    image: "https://images.unsplash.com",
+    tag: "Banking",
+  }
 ];
 
 export default function PortfolioAndTestimonials() {
+  const [activeFilter, setActiveFilter] = useState("All");
   const [testimonials, setTestimonials] = useState(initialTestimonials);
-
   const [showTestimonialForm, setShowTestimonialForm] = useState(false);
   const [newTestimonial, setNewTestimonial] = useState({
     name: "",
     role: "",
+    company: "",
     text: "",
     rating: 5,
     photo: "",
     icon: "domain",
   });
+
+  const filteredProjects = activeFilter === "All"
+    ? projectsData
+    : projectsData.filter((p) => p.category === activeFilter);
 
   const handleTestimonialChange = (e) => {
     const { name, value } = e.target;
@@ -48,304 +71,176 @@ export default function PortfolioAndTestimonials() {
 
   const handleAddTestimonial = (e) => {
     e.preventDefault();
-    if (!newTestimonial.name || !newTestimonial.role || !newTestimonial.text) {
-      alert("Por favor completa los campos obligatorios: nombre, cargo y testimonio.");
+    if (!newTestimonial.name || !newTestimonial.role || !newTestimonial.company || !newTestimonial.text) {
+      alert("Por favor completa los campos obligatorios.");
       return;
     }
-
     setTestimonials((prev) => [...prev, { ...newTestimonial }]);
-    
-    // Resetear formulario
-    setNewTestimonial({
-      name: "",
-      role: "",
-      text: "",
-      rating: 5,
-      photo: "",
-      icon: "domain",
-    });
-    
+    setNewTestimonial({ name: "", role: "", company: "", text: "", rating: 5, photo: "", icon: "domain" });
     setShowTestimonialForm(false);
   };
 
   return (
     <>
-      {/* Galería de Proyectos */}
+     {/* Galería de Proyectos */}
       <section className="py-24 px-6 md:px-20 lg:px-40">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
           <div>
             <div className="flex items-center gap-3 text-primary mb-2">
               <span className="h-px w-8 bg-primary"></span>
-              <span className="text-sm font-bold uppercase tracking-widest">
-                Galería de Proyectos
-              </span>
+              <span className="text-sm font-bold uppercase tracking-widest">Galería de Proyectos</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">
-              Our Complete Portfolio
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Our Portfolio</h2>
           </div>
 
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-            <button className="px-5 py-2 rounded-full bg-primary text-white font-bold text-xs whitespace-nowrap">
-              All
-            </button>
-            <button className="px-5 py-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary font-bold text-xs transition-colors whitespace-nowrap">
-              Fintech
-            </button>
-            <button className="px-5 py-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary font-bold text-xs transition-colors whitespace-nowrap">
-              Health
-            </button>
-            <button className="px-5 py-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary font-bold text-xs transition-colors whitespace-nowrap">
-              SaaS
-            </button>
-            <button className="px-5 py-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary font-bold text-xs transition-colors whitespace-nowrap">
-              AI & ML
-            </button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Aquí puedes mantener tus tarjetas de proyectos estáticas o hacerlas dinámicas */}
-          <div className="group bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden border border-slate-200 dark:border-primary/5 hover:border-primary/20 shadow-sm hover:shadow-xl transition-all duration-300">
-            <div className="h-52 overflow-hidden relative">
-              <img
-                alt="OmniStore Core"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8BCp32io0LgmHaMJvuj77_TxKSeWinYN_M0De-qkOAKbounWUKYGC8SxukhO3m0Ag9jEwz9JjhgeuzZFBXSO2GBYdaIpyHFMUNz8N496UH_rqOI1SLuJXE_bABC4KBHrq1-u-RF65IPB8xF1XIynB7f6jPBLISyzRKLN2qrQYY7VQN5GxXnEYFoJ6NZU-hlHMU342XLE6sZ3NOLnmgeIZIU60GyIJxiEXaiS0H8xxwioTHQtiU-jfQPp_EhH2f8Th_TjbpFIh9mH8"
-              />
-              <div className="absolute top-4 left-4">
-                <span className="bg-white/90 backdrop-blur text-primary text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-md shadow-sm">
-                  E-commerce
-                </span>
-              </div>
-            </div>
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                OmniStore Core
-              </h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm mb-6 leading-relaxed">
-                Headless commerce engine supporting multi-channel retail with high-concurrency inventory synchronization.
-              </p>
-              <button className="w-full flex items-center justify-center gap-2 bg-primary/5 hover:bg-primary text-primary hover:text-white py-3 rounded-lg font-bold transition-all text-sm">
-                View Details{" "}
-                <span className="material-symbols-outlined text-sm">arrow_outward</span>
+            {["All", "Fintech", "Health", "SaaS", "AI & ML"].map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                className={`px-5 py-2 rounded-full font-bold text-xs transition-all whitespace-nowrap ${
+                  activeFilter === cat ? "bg-primary text-white" : "bg-slate-200 dark:bg-slate-800 text-slate-600"
+                }`}
+              >
+                {cat}
               </button>
-            </div>
+            ))}
           </div>
-
-          {/* Agrega más tarjetas estáticas aquí si lo deseas */}
         </div>
+
+        {/* Lógica para mostrar mensaje si no hay proyectos */}
+        {filteredProjects.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project) => (
+              <div key={project.id} className="group bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden border border-slate-200 dark:border-primary/5 hover:border-primary/20 shadow-sm transition-all duration-300">
+                <div className="h-52 overflow-hidden relative bg-slate-100 dark:bg-slate-800">
+                  <img 
+                    alt={project.title} 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                    src={project.image || DEFAULT_PROJECT_IMAGE} 
+                    onError={(e) => e.target.src = DEFAULT_PROJECT_IMAGE}
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-white/90 backdrop-blur text-primary text-[10px] uppercase font-bold px-3 py-1 rounded-md shadow-sm">
+                      {project.tag}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm mb-6 leading-relaxed">{project.description}</p>
+                  <button className="w-full bg-primary/5 hover:bg-primary text-primary hover:text-white py-3 rounded-lg font-bold transition-all text-sm">
+                    View Details
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="py-20 text-center border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-3xl">
+            <span className="material-symbols-outlined text-5xl text-slate-300 dark:text-slate-700 mb-4">folder_off</span>
+            <p className="text-slate-500 dark:text-slate-400 font-medium text-lg">No hay proyectos relacionados aún en esta categoría.</p>
+          </div>
+        )}
       </section>
 
-      {/* Testimonios */}
+
+
+      {/* Sección Testimonios */}
       <section className="bg-slate-900 py-24 px-6 md:px-20 lg:px-40">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6">
-            <div className="text-center md:text-left">
-              <div className="flex items-center justify-center md:justify-start gap-3 text-primary mb-2">
-                <span className="h-px w-8 bg-primary"></span>
-                <span className="text-sm font-bold uppercase tracking-widest">
-                  Testimonios
-                </span>
-                <span className="h-px w-8 bg-primary"></span>
-              </div>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
-                What Our Clients Say
-              </h2>
-              <p className="text-slate-400 max-w-2xl text-lg">
-                Direct feedback from the executives and engineering leaders we've partnered with.
-              </p>
-            </div>
-
-            <button
-              onClick={() => setShowTestimonialForm(true)}
-              className="px-6 py-3 rounded-xl bg-primary/20 hover:bg-primary/40 text-primary hover:text-white font-semibold transition-all flex items-center gap-2 shadow-md whitespace-nowrap"
-            >
-              <span className="material-symbols-outlined">add_circle</span>
-              Agregar Testimonio
-            </button>
+          <div className="flex justify-between items-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white">Client Feedback</h2>
+            <button onClick={() => setShowTestimonialForm(true)} className="bg-primary text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-all">Add Yours</button>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((t, index) => (
-              <div
-                key={index}
-                className="bg-slate-800/50 p-8 rounded-2xl shadow-sm border border-white/5 flex flex-col h-full hover:border-primary/30 transition-all"
-              >
-                <div className="flex items-center gap-1 text-primary mb-6">
-                  {[...Array(5)].map((_, i) => (
-                    <span
-                      key={i}
-                      className={`material-symbols-outlined text-xl ${i < t.rating ? "fill-1" : ""}`}
-                    >
-                      star
-                    </span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((t, i) => (
+              <div key={i} className="bg-slate-800/40 border border-slate-700/50 p-8 rounded-2xl relative group">
+                <div className="absolute -top-4 -right-4 w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <span className="material-symbols-outlined">{t.icon}</span>
+                </div>
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, star) => (
+                    <span key={star} className={`material-symbols-outlined text-xl ${star < t.rating ? 'text-yellow-400 fill-1' : 'text-slate-600'}`}>star</span>
                   ))}
                 </div>
-                <p className="text-slate-300 italic mb-8 flex-1 leading-relaxed">
-                  "{t.text}"
-                </p>
-                <div className="flex items-center gap-4 border-t border-white/10 pt-6 mb-6">
-                  {t.photo ? (
-                    <img
-                      alt={t.name}
-                      className="size-14 rounded-full object-cover grayscale hover:grayscale-0 transition-all"
-                      src={t.photo}
-                      onError={(e) => {
-                        e.target.src = `https://via.placeholder.com/56?text=${t.name[0]}`;
-                      }}
-                    />
-                  ) : (
-                    <div className="size-14 rounded-full bg-slate-700 flex items-center justify-center text-white font-bold">
-                      {t.name[0]}
-                    </div>
-                  )}
+                <p className="text-slate-300 mb-8 italic">"{t.text}"</p>
+                <div className="flex items-center gap-4">
+                  <img 
+                    src={t.photo?.trim() ? t.photo : DEFAULT_AVATAR} 
+                    onError={(e) => e.target.src = DEFAULT_AVATAR}
+                    className="w-12 h-12 rounded-full object-cover border-2 border-primary/30" 
+                  />
                   <div>
-                    <h4 className="font-bold text-white">{t.name}</h4>
-                    <p className="text-xs text-slate-400 font-medium uppercase tracking-tighter">
-                      {t.role}
-                    </p>
-                  </div>
-                  <div className="ml-auto opacity-30 text-white">
-                    <span className="material-symbols-outlined text-3xl">
-                      {t.icon || "domain"}
-                    </span>
+                    <h4 className="text-white font-bold">{t.name}</h4>
+                    <p className="text-slate-500 text-sm">{t.role}{t.company ? `, ${t.company}` : ""}</p>
                   </div>
                 </div>
-
-                <button className="w-full flex items-center justify-center gap-2 bg-primary/20 hover:bg-primary text-primary hover:text-white py-3 rounded-lg font-bold transition-all mt-auto">
-                  Ver proyecto relacionado
-                  <span className="material-symbols-outlined text-sm">arrow_outward</span>
-                </button>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Modal para agregar nuevo testimonio */}
+      {/* Modal Formulario */}
       {showTestimonialForm && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
           <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                Agregar Nuevo Testimonio
-              </h3>
-              <button
-                onClick={() => setShowTestimonialForm(false)}
-                className="text-3xl text-slate-500 hover:text-slate-900 dark:hover:text-white leading-none"
-              >
-                ×
-              </button>
+            <div className="p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center sticky top-0 bg-white dark:bg-slate-900 z-10">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Agregar Testimonio</h3>
+              <button onClick={() => setShowTestimonialForm(false)} className="text-3xl text-slate-500 leading-none">×</button>
             </div>
-
             <form onSubmit={handleAddTestimonial} className="p-6 space-y-5">
               <div>
-                <label className="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">
-                  Nombre *
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={newTestimonial.name}
-                  onChange={handleTestimonialChange}
-                  className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                  required
-                />
+                <label className="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">Nombre *</label>
+                <input type="text" name="name" value={newTestimonial.name} onChange={handleTestimonialChange} className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 dark:text-white outline-none focus:ring-1 focus:ring-primary" required />
               </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">
-                  Cargo / Empresa *
-                </label>
-                <input
-                  type="text"
-                  name="role"
-                  value={newTestimonial.role}
-                  onChange={handleTestimonialChange}
-                  className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">
-                  Testimonio *
-                </label>
-                <textarea
-                  name="text"
-                  value={newTestimonial.text}
-                  onChange={handleTestimonialChange}
-                  rows={4}
-                  className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                  required
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">
-                    Calificación (1-5) *
-                  </label>
-                  <input
-                    type="number"
-                    name="rating"
-                    min="1"
-                    max="5"
-                    value={newTestimonial.rating}
-                    onChange={handleTestimonialChange}
-                    className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                    required
-                  />
+                  <label className="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">Cargo *</label>
+                  <select name="role" value={newTestimonial.role} onChange={handleTestimonialChange} className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 dark:text-white outline-none cursor-pointer" required>
+                    <option value="" disabled>Cargo</option>
+                    {ROLE_OPTIONS.map(r => <option key={r} value={r}>{r}</option>)}
+                  </select>
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">
-                    Icono
-                  </label>
-                  <select
-                    name="icon"
-                    value={newTestimonial.icon}
-                    onChange={handleTestimonialChange}
-                    className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                  >
-                    <option value="domain">domain (empresa)</option>
-                    <option value="medical_services">medical_services</option>
-                    <option value="shopping_cart">shopping_cart</option>
-                    <option value="business">business</option>
-                    <option value="person">person</option>
+                  <label className="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">Empresa *</label>
+                  <select name="company" value={newTestimonial.company} onChange={handleTestimonialChange} className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 dark:text-white outline-none cursor-pointer" required>
+                    <option value="" disabled>Empresa</option>
+                    {COMPANY_OPTIONS.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
                 </div>
               </div>
-
               <div>
-                <label className="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">
-                  URL de foto (opcional)
-                </label>
-                <input
-                  type="url"
-                  name="photo"
-                  value={newTestimonial.photo}
-                  onChange={handleTestimonialChange}
-                  placeholder="https://..."
-                  className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                />
+                <label className="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">Testimonio *</label>
+                <textarea name="text" value={newTestimonial.text} onChange={handleTestimonialChange} rows={3} className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 dark:text-white outline-none resize-none" required />
               </div>
-
-              <div className="flex justify-end gap-4 pt-4">
-                <button
-                  type="button"
-                  onClick={() => setShowTestimonialForm(false)}
-                  className="px-6 py-2.5 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-600 transition"
-                >
-                  Cancelar
-                </button>
-                <button
-                  type="submit"
-                  className="px-6 py-2.5 rounded-lg bg-primary text-white hover:bg-primary/90 transition font-medium"
-                >
-                  Agregar Testimonio
-                </button>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">Calificación *</label>
+                  <div className="flex bg-slate-100 dark:bg-slate-800 p-2 rounded-lg justify-around border dark:border-slate-700">
+                    {[1, 2, 3, 4, 5].map(n => (
+                      <button key={n} type="button" onClick={() => handleTestimonialChange({ target: { name: 'rating', value: n } })} className={`material-symbols-outlined ${newTestimonial.rating >= n ? 'text-yellow-400 fill-1' : 'text-slate-400'}`}>star</button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">Icono / Proyecto</label>
+                  <div className="relative flex items-center">
+                    <span className="material-symbols-outlined absolute left-3 text-primary text-xl">{newTestimonial.icon}</span>
+                    <select name="icon" value={newTestimonial.icon} onChange={handleTestimonialChange} className="w-full pl-11 pr-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 dark:text-white outline-none appearance-none cursor-pointer">
+                      {projectTypes.map(pt => <option key={pt.id} value={pt.id}>{pt.label}</option>)}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1.5 text-slate-700 dark:text-slate-300">Foto URL (opcional)</label>
+                <input type="url" name="photo" value={newTestimonial.photo} onChange={handleTestimonialChange} className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 dark:text-white outline-none" />
+              </div>
+              <div className="flex justify-end gap-3 pt-4 border-t dark:border-slate-800">
+                <button type="button" onClick={() => setShowTestimonialForm(false)} className="px-6 py-2.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold">Cancelar</button>
+                <button type="submit" className="px-8 py-2.5 rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/20">Agregar</button>
               </div>
             </form>
           </div>
