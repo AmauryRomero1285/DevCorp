@@ -79,3 +79,10 @@
     transform: translateY(-4px);
   }
 }
+
+.grecaptcha-badge { 
+  visibility: hidden !important; 
+}
+#captcha_container {
+  overflow: hidden; /* Esto cortará cualquier elemento que intente salir del div */
+}
