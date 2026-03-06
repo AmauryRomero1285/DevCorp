@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Modelo Álbum 3 Páginas</title>
+
+<style>
+body{
+  margin:0;
+  background:#dcdcdc;
+  font-family:"Georgia", serif;
+  display:flex;
+  flex-direction:column;
+  gap:60px;
+  padding:40px;
+  align-items:center;
+}
+
+/* A4 HORIZONTAL PROPORCIONAL */
+.page{
+  width:1122px;
+  height:794px;
+  background:white;
+  box-shadow:0 20px 40px rgba(0,0,0,0.25);
+  padding:70px;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+/* FOTO 10x15 EXACTA */
+.photo{
+  width:225px;
+  height:150px;
+  background:#d9d9d9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  color:#555;
+  border:12px solid white;
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
+}
+
+.photo-vertical{
+  width:150px;
+  height:225px;
+  background:#cfcfcf;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  color:#555;
+  border:12px solid white;
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
+}
+
+.row{
+  display:flex;
+  gap:40px;
+}
+
+.text{
+  font-size:16px;
+  line-height:1.9;
+  text-align:justify;
+}
+
+.title{
+  font-size:32px;
+}
+
+.subtitle{
+  font-size:15px;
+  color:#666;
+  margin-bottom:30px;
+}
+
+.rating{
+  font-size:22px;
+  letter-spacing:5px;
+}
+
+.quote{
+  font-style:italic;
+  text-align:center;
+  font-size:18px;
+  margin-top:20px;
+  color:#444;
+}
+
+</style>
+</head>
+<body>
+
+<!-- PAGINA 1 -->
+<div class="page">
+
+  <div>
+    <div class="title">Nombre del Lugar</div>
+    <div class="subtitle">14 de Febrero 2026</div>
+
+    <div class="row">
+      <div class="photo">Alimento Principal 1</div>
+      <div class="photo">Alimento Principal 2</div>
+    </div>
+
+    <div class="row" style="margin-top:40px;">
+      <div class="text" style="width:50%;">
+        <strong>Nombre Persona A</strong><br>
+        Breve reseña del platillo y experiencia personal.
+      </div>
+      <div class="text" style="width:50%;">
+        <strong>Nombre Persona B</strong><br>
+        Opinión complementaria sobre sabor y momento.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PAGINA 2 -->
+<div class="page">
+
+  <div>
+    <div class="title">La Experiencia</div>
+
+    <div class="row" style="margin-top:40px;">
+      <div class="photo-vertical">Individual A</div>
+      <div class="photo-vertical">Individual B</div>
+
+      <div class="text" style="width:40%;">
+        Más allá de la comida, el momento compartido
+        fue lo que realmente hizo especial la noche.
+        Las conversaciones, las risas y la compañía
+        transformaron la cena en recuerdo.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PAGINA 3 -->
+<div class="page">
+
+  <div>
+    <div class="title">Cierre</div>
+
+    <div class="row" style="margin-top:40px;">
+      <div class="photo">Foto en Pareja</div>
+
+      <div class="text" style="width:50%;">
+        <strong>Reseña General del Lugar</strong><br><br>
+        Ambiente, servicio y experiencia global.
+        Evaluación honesta del sitio como recuerdo.
+        <br><br>
+        <div class="rating">★★★★☆</div>
+      </div>
+    </div>
+
+    <div class="quote">
+      “Un momento sencillo que decidimos guardar.”
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

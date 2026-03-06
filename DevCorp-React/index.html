@@ -4,10 +4,25 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>devcorp-react</title>
+    <title>DevCorp Enterprise</title>
+    <!-- En public/index.html -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Al final de main.jsx (después del render)
+      const rootElement = document.documentElement;
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        rootElement.classList.add("dark");
+      } else {
+        rootElement.classList.remove("dark");
+      }
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
