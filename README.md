@@ -2,17 +2,19 @@
 practice to architecture web
 
 # Files Architecture
+
+```text
 src/
 ├── assets/                  # Imágenes, logos, icons, fonts, etc.
 │   ├── images/
 │   │   ├── logo.png
 │   │   ├── hero-bg.jpg
-│   │   └── clients/         (logos de clientes ficticios o reales)
+│   │   └── clients/         
 │   ├── icons/
-│   └── fonts/               (si usas fuentes personalizadas)
+│   └── fonts/               
 │
-├── components/              # Todo lo reutilizable
-│   ├── common/              # Muy genéricos (usados en toda la app)
+├── components/             
+│   ├── common/             
 │   │   ├── Button/
 │   │   │   ├── Button.jsx
 │   │   │   └── Button.css / styles.module.css
@@ -20,21 +22,21 @@ src/
 │   │   ├── LoadingSpinner/
 │   │   └── Modal/
 │   │
-│   ├── layout/              # Partes que se repiten en varias páginas
+│   ├── layout/             
 │   │   ├── Navbar/
 │   │   │   ├── Navbar.jsx
 │   │   │   └── Navbar.module.css
 │   │   ├── Footer/
-│   │   ├── Sidebar/         (si llegas a tener dashboard o algo)
-│   │   └── MainLayout.jsx   (envuelve las páginas)
+│   │   ├── Sidebar/        
+│   │   └── MainLayout.jsx   
 │   │
-│   └── ui/                  (alternativa o complemento a common – botones fancy, badges, etc.)
+│   └── ui/                  
 │
-├── pages/                   # Cada página principal (ruta)
+├── pages/                   
 │   ├── Home/
 │   │   ├── Home.jsx
 │   │   ├── Home.module.css
-│   │   └── sections/        (si la home es muy larga)
+│   │   └── sections/        
 │   │       ├── Hero.jsx
 │   │       ├── Services.jsx
 │   │       └── Stats.jsx
@@ -43,9 +45,9 @@ src/
 │   │   └── About.jsx
 │   ├── Services/
 │   │   └── Services.jsx
-│   ├── Portfolio/           (o Cases, Projects)
+│   ├── Portfolio/           
 │   │   └── Portfolio.jsx
-│   ├── Technologies/        (o Stack, Tech)
+│   ├── Technologies/        
 │   ├── Contact/
 │   │   └── Contact.jsx
 │   └── NotFound/            (404)
@@ -55,23 +57,23 @@ src/
 │   ├── useScroll.js
 │   └── useWindowSize.js
 │
-├── services/                # Llamadas a API / lógica de datos
-│   └── api.js               (axios / fetch centralizado)
-│       (o → api/
+├── services/                
+│   └── api.js               
 │           ├── projects.js
 │           └── contact.js )
 │
-├── utils/                   # Funciones de ayuda puras
+├── utils/                   # Funciones de ayuda
 │   ├── formatDate.js
 │   ├── validateEmail.js
 │   └── constants.js
 │
-├── routes/                  # Si usas React Router v6+
+├── routes/                  
 │   └── AppRoutes.jsx
 │
-├── styles/                  # Estilos globales (opcional)
+├── styles/                  
 │   ├── global.css
 │   └── variables.css        (colores, tamaños, etc.)
 │
-├── App.jsx                  # Componente raíz
-└── main.jsx                 # Entry point (React 18+)
+├── App.jsx                  
+└── main.jsx                 
+```
